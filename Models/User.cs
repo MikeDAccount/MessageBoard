@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,7 +9,7 @@ namespace MessageBoard.Models
     public class User   // The contructor/class nedds to be manually created with creating a new class file.
     {
         [Key]   // this is a "data annotation" that denotes this is a key identifier. It works specifically with the property that is directly underneath it. In this case Key is making Id the identifier.
-        public int Id {get; set; }
+        public int UserId {get; set; }
 
         // this is a "data annotation" that denotes this identifier is required, has MinLength. It works specifically with the property that is directly underneath it.
         [Required(ErrorMessage = "Username is required.")]   // ErrorMessage allows a message to show when the data is not valid.                                                           
@@ -35,6 +36,8 @@ namespace MessageBoard.Models
         public string Confirm {get; set; }
         public DateTime CreatedAt {get; set; } = DateTime.Now;
         public DateTime UpdatedAt {get; set; } = DateTime.Now;
+        public List<Message> CreatedMessages { get; set; }
+        public List<Comment> CreatedComments { get; set; }
     }
 
 }

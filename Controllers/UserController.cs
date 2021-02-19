@@ -52,7 +52,7 @@ namespace MessageBoard.Controllers
                 user.Register.Password = Hasher.HashPassword(user.Register, user.Register.Password);
                 _context.User.Add(user.Register);
                 _context.SaveChanges();
-                HttpContext.Session.SetInt32("UserId", user.Register.Id);    // here user.Id is being assigned the value "UserID" for the session variable used for the entire site.
+                HttpContext.Session.SetInt32("UserId", user.Register.UserId);    // here user.Id is being assigned the value "UserID" for the session variable used for the entire site.
                 return RedirectToAction("Success");  // This redirects the user to a page. Old value "return RedirectToAction("Success","User"); "
             }
             else 
@@ -81,7 +81,7 @@ namespace MessageBoard.Controllers
                     return View("Registration");
                 }
 
-                HttpContext.Session.SetInt32("UserId", userInDb.Id);
+                HttpContext.Session.SetInt32("UserId", userInDb.UserId);
                 return RedirectToAction("Success");
             }
             else
@@ -106,13 +106,13 @@ namespace MessageBoard.Controllers
             {
                 return RedirectToAction("Registration");
             }
-            User VBUser = _context.User.FirstOrDefault(u => u.Id == (int)LoggedId); // FirstOfDefault gets the first item in a list kind of like "select top ..." in SQL.
+            User VBUser = _context.User.FirstOrDefault(u => u.UserId == (int)LoggedId); // FirstOfDefault gets the first item in a list kind of like "select top ..." in SQL.
             ViewBag.SessionUser = VBUser;   // ViewBag allows access to session variables. SessionUser is the name we decided to use to identify the user data. Can call this anything. 
 
             MessageBoardWrapper MBWrap = new MessageBoardWrapper()
             {   // put all the users in a list, and get the logged in user.
                 AllUsers = _context.User.ToList(),  
-                LoggedUser = _context.User.FirstOrDefault(u => u.Id == (int)LoggedId),
+                LoggedUser = _context.User.FirstOrDefault(u => u.UserId == (int)LoggedId),
             };
 
             return View("Success", MBWrap);  // return View();
