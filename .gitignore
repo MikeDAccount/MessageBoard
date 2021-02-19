@@ -1,3 +1,5 @@
 # This file is for listing what files are sensitive and are not to be published to the githib site repository.
 
 appsettings.json
+bin/
+obj/
