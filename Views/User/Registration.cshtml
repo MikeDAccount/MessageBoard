@@ -1,0 +1,62 @@
+@* @using MessageBoard.Models     
+@model MessageBoard.Models.User *@
+@* // this indicates what model the markup is using. You can only use 1 (similar to inheritance). *@
+@{
+    ViewData["Title"] = "Registeration and Login";     // this assigns what the title of the page will be called. We are calling it "Register"
+}
+
+@model LogRegWrapper
+
+@* ctrl+d  = pressing this as many times as needed will allow you to change all of a selected word is a selected text area. *@
+@* alt+down/up arrow  = pressing this will allow you to move a selected row of code in the text editor up or down. *@
+<div class="row justify-content-around">
+    <div class="col-sm-5">
+        @* action is the URL that you would send the post to *@
+        @* <form asp-controller="Home" asp-action="Register" method="post" class="border-light.box-shadow rounded p-5"> *@
+        <form asp-controller="User" asp-action="Register" asp-area="" method="post" class="border rounded p-5">
+            <h1 class="mx-5 text-center mb-5">Sign-Up</h1>
+            <div class="form-group row">
+                <label asp-for="Register.Username" class="col-form-label"></label>            @* This is accessing Username from the inherited User class above. *@
+                <input asp-for="Register.Username" class="form-control mb-3">                 @* This is accessing Username from the inherited User class above. *@ 
+                <span class="text-danger" asp-validation-for="Register.Username"></span>      @* This is accessing Username from the inherited User class above. *@
+            </div>
+            <div class="form-group row">
+                <label asp-for="Register.Email" class="col-form-label"></label>               @* This is accessing Email from the inherited User class above. *@
+                <input asp-for="Register.Email" class="form-control mb-3">                    @* This is accessing Email from the inherited User class above. *@ 
+                <span class="text-danger" asp-validation-for="Register.Email"></span>         @* This is accessing Email from the inherited User class above. *@
+            </div>      
+            <div class="form-group row">
+                <label asp-for="Register.Password" class="col-form-label"></label>            @* This is accessing Password from the inherited User class above. *@
+                <input asp-for="Register.Password" class="form-control mb-3">                 @* This is accessing Password from the inherited User class above. *@ 
+                <span class="text-danger" asp-validation-for="Register.Password"></span>      @* This is accessing Password from the inherited User class above. *@
+            </div>      
+            <div class="form-group row">
+                <label asp-for="Register.Confirm" class="col-form-label"></label>             @* This is accessing Confirm from the inherited User class above. *@
+                <input asp-for="Register.Confirm" class="form-control mb-3">                  @* This is accessing Confirm from the inherited User class above. *@ 
+                <span class="text-danger" asp-validation-for="Register.Confirm"></span>       @* This is accessing Confirm from the inherited User class above. *@
+            </div>    
+            <div class="form-group row">
+                <button class="btn btn-block btn-primary mt-3">Submit</button>
+            </div>
+        </form>              
+    </div>
+    <div class="col-sm-5">
+        @* Begin login form *@
+        <form asp-controller="User" asp-action="Login" asp-area="" method="post" class="border rounded p-5">
+            <h1 class="mx-5 text-center mb-5">Login</h1>
+            <div class="form-group row">
+                <label asp-for="Login.Email" class="col-form-label"></label>               @* This is accessing Email from the inherited User class above. *@
+                <input asp-for="Login.Email" class="form-control mb-3">                    @* This is accessing Email from the inherited User class above. *@ 
+                <span class="text-danger" asp-validation-for="Login.Email"></span>         @* This is accessing Email from the inherited User class above. *@
+            </div>      
+            <div class="form-group row">
+                <label asp-for="Login.Password" class="col-form-label"></label>            @* This is accessing Password from the inherited User class above. *@
+                <input asp-for="Login.Password" class="form-control mb-3">                 @* This is accessing Password from the inherited User class above. *@ 
+                <span class="text-danger" asp-validation-for="Login.Password"></span>      @* This is accessing Password from the inherited User class above. *@
+            </div>      
+            <div class="form-group row">
+                <button class="btn btn-block btn-primary mt-3">Submit</button>
+            </div>
+        </form> 
+    </div>
+</div>
