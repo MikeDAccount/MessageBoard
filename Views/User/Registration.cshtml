@@ -3,6 +3,8 @@
 @* // this indicates what model the markup is using. You can only use 1 (similar to inheritance). *@
 @{
     ViewData["Title"] = "Registeration and Login";     // this assigns what the title of the page will be called. We are calling it "Register"
+    Layout = "_RegisterLayout"; // This tells this page to use this as the layout.
+    // I'll disconnect and reconnect
 }
 
 @model LogRegWrapper
@@ -13,7 +15,7 @@
     <div class="col-sm-5">
         @* action is the URL that you would send the post to *@
         @* <form asp-controller="Home" asp-action="Register" method="post" class="border-light.box-shadow rounded p-5"> *@
-        <form asp-controller="User" asp-action="Register" asp-area="" method="post" class="border rounded p-5">
+        <form id="register" asp-controller="User" asp-action="Register" asp-area="" method="post" class="border rounded p-5">
             <h1 class="mx-5 text-center mb-5">Sign-Up</h1>
             <div class="form-group row">
                 <label asp-for="Register.Username" class="col-form-label"></label>            @* This is accessing Username from the inherited User class above. *@
@@ -40,9 +42,10 @@
             </div>
         </form>              
     </div>
+
+    @* Begin login form *@
     <div class="col-sm-5">
-        @* Begin login form *@
-        <form asp-controller="User" asp-action="Login" asp-area="" method="post" class="border rounded p-5">
+        <form id="login" asp-controller="User" asp-action="Login" asp-area="" method="post" class="border rounded p-5">
             <h1 class="mx-5 text-center mb-5">Login</h1>
             <div class="form-group row">
                 <label asp-for="Login.Email" class="col-form-label"></label>               @* This is accessing Email from the inherited User class above. *@

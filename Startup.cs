@@ -24,12 +24,13 @@ namespace MessageBoard
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {            
+        {    
+            // The below line use the key to the value of the connectionstring that is located on line 11 of the appsettings.json file.        
             services.AddDbContext<MessageBoardContext>(options => options.UseSqlite(Configuration.GetConnectionString("MessageBoardContext")));
             services.AddDistributedMemoryCache();
             services.AddSession(options => 
             {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.IdleTimeout = TimeSpan.FromDays(1);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });

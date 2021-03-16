@@ -15656,6 +15656,16 @@
       "FilePath": "c:\\Users\\Owner\\Desktop\\Envy Personal\\Documents\\Mike\\WyzAnt Tutors\\Andrew Wheeler\\C# MVC\\MessageBoard\\Views\\User\\Registration.cshtml",
       "TargetPath": "Views\\User\\Registration.cshtml",
       "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Owner\\Desktop\\Envy Personal\\Documents\\Mike\\WyzAnt Tutors\\Andrew Wheeler\\C# MVC\\MessageBoard\\Views\\MessageBoard\\Dashboard.cshtml",
+      "TargetPath": "Views\\MessageBoard\\Dashboard.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Owner\\Desktop\\Envy Personal\\Documents\\Mike\\WyzAnt Tutors\\Andrew Wheeler\\C# MVC\\MessageBoard\\Views\\Shared\\_RegisterLayout.cshtml",
+      "TargetPath": "Views\\Shared\\_RegisterLayout.cshtml",
+      "FileKind": "mvc"
     }
   ],
   "SerializationFormat": "0.2"

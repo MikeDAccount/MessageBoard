@@ -1,0 +1,59 @@
+@{
+    ViewData["Title"] = "Dashboard";     // this assigns what the title of the page will be called. We are calling it "Success"
+}
+@model MessageBoard.Models.MessageBoardWrapper  // this give the cshtml access to the entire MessageBoardWrapper model class (sort of like instantiation)
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="co-sm-8 offset-sm-2">
+            <h1>This is the Dashboard!</h1>
+            <form asp-area="" asp-controller="MessageBoard" asp-action="CreateComment">
+                <div class="form-group row">
+                    <label class="col-form-label" asp-for="Cmt.Content">Post a Message</label>
+                    <textarea class="form-control" type="text" asp-for="Cmt.Content"></textarea>
+                    <button class="btn btn-primary" type="submit">Post</button>
+                </div>
+            </form>
+            @* p. + tab creates a tag that includes the class attribute *@
+
+            @foreach (Message message in Model.AllMessages)
+            {
+                <div class="card border p-3" style="width:'100%';">
+                    <div class="card-body">
+                        <p class="card-title">@message.Content</p>
+                        <small class="card-text">@message.Creator.Username</small>
+                        <a href="/delete/@message.MessageId" class="btn btn-danger float-right">Delete</a>
+                    </div>
+                    
+                    <div class="card-body">
+                        <p class="card-title">Post a comment...</p>
+                        <form action="/messageboard/createcomment/@message.MessageId" method="POST">
+                            <div class="form-group row">                        
+                                    <label class="col-form-label" asp-for="Cmt.Content">Comment</label>
+                                    <textarea class="form-control" type="text" asp-for="Cmt.Content"></textarea>
+                                    <button class="btn btn-primary" type="submit">Post</button>                                                
+                            </div>
+                        </form>
+                    </div>
+
+                    @foreach (Comment comment in @message.ChildrenComments)
+                    {
+                        <div class="card p-3" style="width:'100%';">
+                            <div class="card-header">
+                                <small>@comment.CreatedAt</small>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-title">@comment.Content</p>  @* <p class="card-title">@comment.Content</p>*@
+                                <small class="card-text">@comment.Creator.Username</small>  @*<small class="card-text">@comment.Creator.Username</small>*@
+                                
+                            </div>
+                            <div class="card-footer">
+                                <a href="/messageboard/delete/@comment.CommentId" class="btn btn-danger float-right">Delete</a>     @*<a href="/comment/@comment.CommentId" class="btn btn-danger float-right">Delete</a> *@
+                            </div> 
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
